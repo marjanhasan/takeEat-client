@@ -6,16 +6,16 @@
   @apply px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-20 lg:px-8;
 }
 .btn {
-  @apply inline-flex items-center justify-center h-12 px-6 mb-3 font-medium transition duration-200 rounded shadow-md  md:mb-0 bg-lime-500 hover:bg-lime-700;
+  @apply inline-flex items-center justify-center h-12 px-6 mb-3 font-medium transition duration-200 rounded shadow-lg  md:mb-0 bg-slate-900 hover:bg-slate-800 text-yellow-700;
 }
 .btn-clicked {
-  @apply inline-flex items-center h-12 px-6 mb-3 font-medium text-white transition duration-200 rounded shadow-md  md:mb-0 bg-green-500 hover:bg-green-700;
+  @apply inline-flex items-center h-12 px-6 mb-3 font-medium transition duration-200 rounded shadow-lg  md:mb-0 bg-green-500 hover:bg-green-700;
 }
 .active {
-  @apply font-medium tracking-wide transition-colors duration-200 text-lime-500 inline-block;
+  @apply font-medium tracking-wide transition-colors duration-200 text-[#BB8506] inline-block;
 }
 .default {
-  @apply font-medium tracking-wide transition-colors duration-200 hover:text-lime-400;
+  @apply font-medium tracking-wide transition-colors duration-200 hover:text-[#BB8506];
 }
 .dark {
   @apply bg-gray-800 text-zinc-50;

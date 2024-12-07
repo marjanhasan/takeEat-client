@@ -17,7 +17,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         {/* logo section  */}
         <Link to="/" className="">
           <span className="ml-2 text-2xl font-bold tracking-wide">
-            only<span className="text-lime-400">Chefs</span>
+            restaurant<span className="text-yellow-700">App</span>
           </span>
         </Link>
         <div className="flex">
@@ -128,7 +128,8 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     ) : (
                       <Link to="/" className="inline-flex items-center">
                         <span className="ml-2 text-2xl font-bold tracking-wide">
-                          only<span className="text-lime-400">Chefs</span>
+                          restaurant
+                          <span className="text-yellow-700">App</span>
                         </span>
                       </Link>
                     )}

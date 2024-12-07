@@ -22,6 +22,9 @@ const PopularMenu = () => {
           <MenuItem key={item._id} item={item} />
         ))}
       </div>
+      <div className="flex justify-center mt-8">
+        <button className="btn mx-auto">Order Now</button>
+      </div>
     </section>
   );
 };
