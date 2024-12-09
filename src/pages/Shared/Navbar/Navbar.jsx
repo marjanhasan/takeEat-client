@@ -56,10 +56,10 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             </li>
             <li>
               <NavLink
-                to="blog"
+                to="order"
                 className={({ isActive }) => (isActive ? "active" : "default")}
               >
-                Blog
+                Order
               </NavLink>
             </li>
             <li>
@@ -106,7 +106,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             <FaBars className=" text-gray-600" />
           </button>
           {isMenuOpen && (
-            <div className="absolute top-0 left-0 w-full z-10">
+            <div className="absolute top-0 left-0 w-full z-50">
               <div
                 className={`p-5  border rounded shadow-sm ${
                   darkMode ? "dark" : "bg-white"
@@ -179,12 +179,12 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     </li>
                     <li>
                       <NavLink
-                        to="blog"
+                        to="order"
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
                       >
-                        Blog
+                        Order
                       </NavLink>
                     </li>
                     <li>
