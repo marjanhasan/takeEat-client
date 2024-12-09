@@ -48,10 +48,10 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             </li>
             <li>
               <NavLink
-                to="favorite-chef"
+                to="menu"
                 className={({ isActive }) => (isActive ? "active" : "default")}
               >
-                Favorites
+                Menu
               </NavLink>
             </li>
             <li>
@@ -169,12 +169,12 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     </li>
                     <li>
                       <NavLink
-                        to="favorite-chef"
+                        to="menu"
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
                       >
-                        Favorites
+                        Menu
                       </NavLink>
                     </li>
                     <li>
