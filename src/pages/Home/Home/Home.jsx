@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Helmet>
-        <title>Restauran App - Home</title>
+        <title>Restaurant App - Home</title>
       </Helmet>
       <Banner />
       <Category />
