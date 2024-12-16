@@ -48,7 +48,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             </li>
             <li>
               <NavLink
-                to="menu"
+                to="/menu"
                 className={({ isActive }) => (isActive ? "active" : "default")}
               >
                 Menu
@@ -56,7 +56,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             </li>
             <li>
               <NavLink
-                to="order"
+                to="/order/offered"
                 className={({ isActive }) => (isActive ? "active" : "default")}
               >
                 Order
@@ -169,7 +169,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     </li>
                     <li>
                       <NavLink
-                        to="menu"
+                        to="/menu"
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
@@ -179,7 +179,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     </li>
                     <li>
                       <NavLink
-                        to="order"
+                        to="/order/offered"
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }
@@ -189,7 +189,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     </li>
                     <li>
                       <NavLink
-                        to="about"
+                        to="/about"
                         className={({ isActive }) =>
                           isActive ? "active" : "default"
                         }

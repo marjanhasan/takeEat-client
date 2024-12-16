@@ -28,7 +28,7 @@ const Menu = () => {
         margin={"mb-6"}
       />
       <SectionTitle title={"don't miss"} subtitle={"today's offer"} />
-      <MenuCategory items={offered} />
+      <MenuCategory items={offered} category={"offered"} />
       <Cover
         img={dessertImg}
         title={"desserts"}
@@ -37,7 +37,7 @@ const Menu = () => {
         }
         margin={"my-12"}
       />
-      <MenuCategory items={dessert} />
+      <MenuCategory items={dessert} category={"desserts"} />
       <Cover
         img={pizzaImg}
         title={"pizza"}
@@ -46,7 +46,7 @@ const Menu = () => {
         }
         margin={"my-12"}
       />
-      <MenuCategory items={pizza} />
+      <MenuCategory items={pizza} category={"pizzas"} />
       <Cover
         img={saladImg}
         title={"salad"}
@@ -55,7 +55,7 @@ const Menu = () => {
         }
         margin={"my-12"}
       />
-      <MenuCategory items={salad} />
+      <MenuCategory items={salad} category={"salads"} />
       <Cover
         img={soupImg}
         title={"soup"}
@@ -64,7 +64,7 @@ const Menu = () => {
         }
         margin={"my-12"}
       />
-      <MenuCategory items={soup} />
+      <MenuCategory items={soup} category={"soups"} />
     </div>
   );
 };
