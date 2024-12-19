@@ -1,13 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../providers/AuthProviders";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
+  const { signIn } = useContext(AuthContext);
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -17,6 +21,10 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    signIn(email, password).then((res) => {
+      const user = res.user;
+      console.log(user);
+    });
   };
 
   const handleCaptcha = () => {
@@ -27,7 +35,7 @@ const Login = () => {
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold uppercase">Login now!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -38,7 +46,7 @@ const Login = () => {
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text uppercase">Email</span>
               </label>
               <input
                 type="email"
@@ -50,7 +58,7 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text uppercase">Password</span>
               </label>
               <input
                 type="password"
@@ -60,7 +68,10 @@ const Login = () => {
                 required
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <a
+                  href="#"
+                  className="label-text-alt link link-hover uppercase"
+                >
                   Forgot password?
                 </a>
               </label>
@@ -78,7 +89,7 @@ const Login = () => {
                   className="input input-bordered"
                   required
                 />
-                <button className="btn" onClick={handleCaptcha}>
+                <button className="btn uppercase" onClick={handleCaptcha}>
                   validate
                 </button>
               </div>
@@ -92,6 +103,12 @@ const Login = () => {
               />
             </div>
           </form>
+          <Link
+            to={"/signup"}
+            className="text-xs uppercase font-bold text-yellow-700 text-center mb-4"
+          >
+            New here? sign up
+          </Link>
         </div>
       </div>
     </div>
