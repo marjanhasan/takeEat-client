@@ -1,21 +1,37 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            console.log("User profile updated");
+            reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${data?.name} signed in successfully`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
@@ -47,6 +63,23 @@ const SignUp = () => {
                 className="input input-bordered"
               />
               {errors.name && (
+                <span className="uppercase mt-2 text-red-500 font-semibold text-sm">
+                  This field is required
+                </span>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text uppercase">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                name="photoURL"
+                placeholder="Photo URL"
+                {...register("photoURL", { required: true })}
+                className="input input-bordered"
+              />
+              {errors.photoURL && (
                 <span className="uppercase mt-2 text-red-500 font-semibold text-sm">
                   This field is required
                 </span>
