@@ -1,8 +1,29 @@
+import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { createUser } = useContext(AuthContext);
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
+      <Helmet>
+        <title>Restaurant App - Sign Up</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign Up now!</h1>
@@ -13,7 +34,7 @@ const SignUp = () => {
           </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text uppercase">Name</span>
@@ -22,9 +43,14 @@ const SignUp = () => {
                 type="text"
                 name="name"
                 placeholder="name"
+                {...register("name", { required: true })}
                 className="input input-bordered"
-                required
               />
+              {errors.name && (
+                <span className="uppercase mt-2 text-red-500 font-semibold text-sm">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -34,9 +60,14 @@ const SignUp = () => {
                 type="email"
                 name="email"
                 placeholder="email"
+                {...register("email", { required: true })}
                 className="input input-bordered"
-                required
               />
+              {errors.email && (
+                <span className="uppercase mt-2 text-red-500 font-semibold text-sm">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -46,9 +77,22 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 placeholder="password"
+                {...register("password", {
+                  required: true,
+                  pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                })}
                 className="input input-bordered"
-                required
               />
+              {errors.password?.type == "required" && (
+                <span className="uppercase mt-2 text-red-500 font-semibold text-sm">
+                  This field is required
+                </span>
+              )}
+              {errors.password?.type == "pattern" && (
+                <span className="uppercase mt-2 text-red-500 font-semibold text-sm">
+                  Minimum eight characters, at least one letter and one number
+                </span>
+              )}
               <label className="label">
                 <a
                   href="#"
