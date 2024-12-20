@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaBars, FaTimesCircle, FaToggleOff, FaToggleOn } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import { AuthContext } from "../../../providers/AuthProviders";
 
 // TODO: props
 const Navbar = ({ toggleDarkMode, darkMode }) => {
   // TODO:
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // TODO:
-  // const { logOut, user, profile } = useContext(AuthContext);
-  const logOut = null,
-    user = null;
+  // TODO: , profile
+  const { logOut, user } = useContext(AuthContext);
   return (
     <>
       <div className="flex items-center justify-between relative px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -85,7 +84,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                 />
               </Link>
               <Tooltip id="my-tooltip" />
-              <button onClick={logOut} className="btn">
+              <button onClick={() => logOut()} className="btn">
                 Logout
               </button>
             </div>
