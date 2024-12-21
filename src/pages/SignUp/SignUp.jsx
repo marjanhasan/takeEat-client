@@ -136,7 +136,7 @@ const SignUp = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <input className="btn uppercase" type="submit" value="signup" />
+              <input className="btn" type="submit" value="signup" />
             </div>
           </form>
           <Link

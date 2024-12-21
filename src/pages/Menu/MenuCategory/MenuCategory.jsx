@@ -10,7 +10,7 @@ const MenuCategory = ({ items, category }) => {
         ))}
       </div>
       <div className="flex justify-center mt-8">
-        <Link to={`/order/${category}`} className="btn mx-auto uppercase">
+        <Link to={`/order/${category}`} className="btn mx-auto">
           Order your favorite food
         </Link>
       </div>

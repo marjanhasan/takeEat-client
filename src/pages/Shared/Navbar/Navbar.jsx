@@ -1,5 +1,11 @@
 import { useContext, useState } from "react";
-import { FaBars, FaTimesCircle, FaToggleOff, FaToggleOn } from "react-icons/fa";
+import {
+  FaBars,
+  FaShoppingCart,
+  FaTimesCircle,
+  FaToggleOff,
+  FaToggleOn,
+} from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { AuthContext } from "../../../providers/AuthProviders";
@@ -10,6 +16,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // TODO: , profile
   const { logOut, user } = useContext(AuthContext);
+  console.log(user?.displayName);
   return (
     <>
       <div className="flex items-center justify-between relative px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -80,10 +87,16 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                   src={`${user?.photoURL}`}
                   alt=""
                   data-tooltip-id="my-tooltip"
-                  data-tooltip-content={user?.displayName}
+                  data-tooltip-content={`Hey, ${user?.displayName}!`}
                 />
               </Link>
-              <Tooltip id="my-tooltip" />
+              <Tooltip id="my-tooltip" className="z-50" />
+              <Link to={"/"}>
+                <div className="btn text-lg">
+                  <FaShoppingCart />
+                  +0
+                </div>
+              </Link>
               <button onClick={() => logOut()} className="btn">
                 Logout
               </button>

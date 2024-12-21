@@ -15,7 +15,7 @@ const PopularMenu = () => {
         ))}
       </div>
       <div className="flex justify-center mt-8">
-        <button className="btn mx-auto uppercase">Order Now</button>
+        <button className="btn mx-auto">Order Now</button>
       </div>
     </section>
   );
