@@ -1,15 +1,41 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
-  const { name, recipe, price, image } = item;
+  const { name, recipe, price, image, _id } = item;
   const { user } = useAuth();
   const navigate = useNavigate();
-  const handleClick = (food) => {
+  const location = useLocation();
+  const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
+  const handleClick = () => {
     if (user) {
-      // TODO: send to cart
-      console.log(food, user.email);
+      // send to cart
+      const cartItem = {
+        menuId: _id,
+        email: user?.email,
+        name,
+        image,
+        price,
+      };
+      axiosSecure
+        .post("/carts", cartItem)
+        .then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${name} added to the cart successfully!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            refetch();
+          }
+        })
+        .catch((err) => console.log(err));
     } else {
       Swal.fire({
         title: "You're not Logged in!!",
@@ -21,7 +47,7 @@ const FoodCard = ({ item }) => {
         confirmButtonText: "Login now!",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login");
+          navigate("/login", { state: { from: location } });
         }
       });
     }
@@ -37,7 +63,7 @@ const FoodCard = ({ item }) => {
           <div className="badge bg-yellow-700 p-3">$ {price}</div>
         </h2>
         <p className="">{recipe}</p>
-        <button onClick={() => handleClick(item)} className="btn">
+        <button onClick={handleClick} className="btn">
           add to cart
         </button>
       </div>
