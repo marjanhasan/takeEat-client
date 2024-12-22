@@ -72,10 +72,10 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             </li>
             <li>
               <NavLink
-                to="about"
+                to="contact"
                 className={({ isActive }) => (isActive ? "active" : "default")}
               >
-                About
+                Contact
               </NavLink>
             </li>
           </ul>
@@ -93,7 +93,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                 />
               </Link>
               <Tooltip id="my-tooltip" className="z-50" />
-              <Link to={"/"}>
+              <Link to={"/dashboard/cart"}>
                 <div className="btn text-lg">
                   <FaShoppingCart />
                   {cart.length}
