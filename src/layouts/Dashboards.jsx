@@ -4,13 +4,16 @@ import {
   FaEnvelope,
   FaHamburger,
   FaHome,
+  FaHouseUser,
   FaShoppingBag,
   FaShoppingCart,
   FaStar,
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const Dashboards = () => {
+  const [cart] = useCart();
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-orange-300">
@@ -23,11 +26,11 @@ const Dashboards = () => {
         <ul className="pl-8 mt-6 uppercase text-xl">
           <li className="pb-4">
             <NavLink
-              to={"/dashboard/home"}
+              to={"/dashboard/user"}
               className={({ isActive }) => (isActive ? "active" : "default")}
             >
               <span className="flex items-center gap-2">
-                <FaHome /> Home
+                <FaHouseUser /> User
               </span>
             </NavLink>
           </li>
@@ -47,7 +50,7 @@ const Dashboards = () => {
               className={({ isActive }) => (isActive ? "active" : "default")}
             >
               <span className="flex items-center gap-2">
-                <FaShoppingCart /> cart
+                <FaShoppingCart /> cart ({cart.length})
               </span>
             </NavLink>
           </li>
@@ -74,6 +77,13 @@ const Dashboards = () => {
         </ul>
         <div className="divider"></div>
         <ul className="pl-8 uppercase text-xl font-semibold">
+          <li className="pb-4">
+            <Link to="/">
+              <span className="flex items-center gap-2">
+                <FaHome /> Home
+              </span>
+            </Link>
+          </li>
           <li className="pb-4">
             <Link to="/menu">
               <span className="flex items-center gap-2">
