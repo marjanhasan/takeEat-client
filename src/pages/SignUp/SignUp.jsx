@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { FaArrowLeft } from "react-icons/fa";
+import GoogleButton from "../../components/GoogleButton/GoogleButton";
 
 const SignUp = () => {
   const {
@@ -14,22 +17,32 @@ const SignUp = () => {
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            console.log("User profile updated");
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: `${data?.name} signed in successfully`,
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic
+              .post("/users", userInfo)
+              .then((res) => {
+                if (res.data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${data?.name} signed in successfully`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              })
+              .catch((err) => console.log(err));
           })
           .catch((err) => console.log(err));
       })
@@ -139,11 +152,20 @@ const SignUp = () => {
               <input className="btn" type="submit" value="signup" />
             </div>
           </form>
+          <GoogleButton />
           <Link
             to={"/login"}
             className="text-xs uppercase font-bold text-yellow-700 text-center mb-4"
           >
             already have an account? login
+          </Link>
+          <Link
+            to={"/"}
+            className="text-xs uppercase font-bold text-yellow-700 text-center mb-4"
+          >
+            <span className="flex items-center justify-center gap-2">
+              <FaArrowLeft /> go back to home
+            </span>
           </Link>
         </div>
       </div>

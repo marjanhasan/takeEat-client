@@ -8,6 +8,8 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { FaArrowLeft } from "react-icons/fa";
+import GoogleButton from "../../components/GoogleButton/GoogleButton";
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
@@ -114,11 +116,20 @@ const Login = () => {
               />
             </div>
           </form>
+          <GoogleButton />
           <Link
             to={"/signup"}
             className="text-xs uppercase font-bold text-yellow-700 text-center mb-4"
           >
             New here? sign up
+          </Link>
+          <Link
+            to={"/"}
+            className="text-xs uppercase font-bold text-yellow-700 text-center mb-4"
+          >
+            <span className="flex items-center justify-center gap-2">
+              <FaArrowLeft /> go back to home
+            </span>
           </Link>
         </div>
       </div>
