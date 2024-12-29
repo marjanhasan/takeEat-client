@@ -1,22 +1,27 @@
 import {
+  FaBook,
   FaCalendar,
   FaDollarSign,
   FaEnvelope,
   FaHamburger,
   FaHome,
   FaHouseUser,
+  FaList,
   FaShoppingBag,
   FaShoppingCart,
   FaStar,
+  FaUsers,
+  FaUtensils,
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 
 const Dashboards = () => {
   const [cart] = useCart();
+  const isAdmin = true;
   return (
     <div className="flex">
-      <div className="w-64 min-h-screen bg-orange-300">
+      <div className="w-fit pr-6 min-h-screen bg-orange-300">
         <Link to="/">
           <div className="pl-4 pt-6 text-2xl font-bold tracking-wide">
             restaurant<span className="text-yellow-700">App</span>
@@ -24,56 +29,133 @@ const Dashboards = () => {
         </Link>
         <div className="divider"></div>
         <ul className="pl-8 mt-6 uppercase text-xl">
-          <li className="pb-4">
-            <NavLink
-              to={"/dashboard/user"}
-              className={({ isActive }) => (isActive ? "active" : "default")}
-            >
-              <span className="flex items-center gap-2">
-                <FaHouseUser /> User
-              </span>
-            </NavLink>
-          </li>
-          <li className="pb-4">
-            <NavLink
-              to={"/dashboard/reservation"}
-              className={({ isActive }) => (isActive ? "active" : "default")}
-            >
-              <span className="flex items-center gap-2">
-                <FaCalendar /> Reservation
-              </span>
-            </NavLink>
-          </li>
-          <li className="pb-4">
-            <NavLink
-              to={"/dashboard/cart"}
-              className={({ isActive }) => (isActive ? "active" : "default")}
-            >
-              <span className="flex items-center gap-2">
-                <FaShoppingCart /> cart ({cart.length})
-              </span>
-            </NavLink>
-          </li>
-          <li className="pb-4">
-            <NavLink
-              to={"/dashboard/payment"}
-              className={({ isActive }) => (isActive ? "active" : "default")}
-            >
-              <span className="flex items-center gap-2">
-                <FaDollarSign /> payment
-              </span>
-            </NavLink>
-          </li>
-          <li className="pb-4">
-            <NavLink
-              to={"/dashboard/review"}
-              className={({ isActive }) => (isActive ? "active" : "default")}
-            >
-              <span className="flex items-center gap-2">
-                <FaStar /> review
-              </span>
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/user"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaHouseUser /> Admin
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/user"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaUtensils /> add items
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/user"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaList /> manage items
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/user"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaBook /> manage bookings
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/all-users"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaUsers /> all users
+                  </span>
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/user"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaHouseUser /> User
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/reservation"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaCalendar /> Reservation
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/cart"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaShoppingCart /> cart ({cart.length})
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/payment"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaDollarSign /> payment
+                  </span>
+                </NavLink>
+              </li>
+              <li className="pb-4">
+                <NavLink
+                  to={"/dashboard/review"}
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  <span className="flex items-center gap-2">
+                    <FaStar /> review
+                  </span>
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
         <div className="divider"></div>
         <ul className="pl-8 uppercase text-xl font-semibold">

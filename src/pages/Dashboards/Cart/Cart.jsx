@@ -46,18 +46,17 @@ const Cart = () => {
       </Helmet>
       <SectionTitle title={"My Cart"} subtitle={"All the lists of my cart"} />
       <div className="overflow-x-auto">
+        <>
+          <div className="flex justify-between items-center py-3 uppercase font-bold text-xl text-slate-900">
+            <div>Hello, {user?.displayName}</div>
+            <div>total items: {cart.length}</div>
+            <div>total price: {totalPrice} $</div>
+            <div>
+              <button className="btn h-6">pay</button>
+            </div>
+          </div>
+        </>
         <table className="table">
-          <thead>
-            <tr className="py-3 uppercase font-bold text-xl text-slate-900">
-              <th></th>
-              <th>Hello, {user?.displayName}</th>
-              <th>total items: {cart.length}</th>
-              <th>total price: {totalPrice} $</th>
-              <th>
-                <button className="btn h-6">pay</button>
-              </th>
-            </tr>
-          </thead>
           <thead>
             <tr className="text-lg">
               <th>#</th>

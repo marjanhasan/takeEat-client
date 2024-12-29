@@ -8,7 +8,7 @@
 .btn {
   @apply inline-flex items-center justify-center h-12 px-6 mb-3 font-medium transition duration-200 rounded shadow-lg  md:mb-0 bg-slate-900 hover:bg-slate-800 text-yellow-700 uppercase;
 }
-.btn-cancel {
+.cancel {
   @apply inline-flex items-center justify-center h-8 px-5 mb-3 font-medium transition duration-200 rounded shadow-lg  md:mb-0 bg-red-700 hover:bg-red-600 text-white uppercase;
 }
 .btn-clicked {
