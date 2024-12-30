@@ -98,7 +98,7 @@ const AllUsers = () => {
           </thead>
           <tbody>
             {users?.map((singleUser, idx) => (
-              <tr key={singleUser._id} className="text-lg text-wrap">
+              <tr key={singleUser._id} className="text-lg">
                 <td>{idx + 1}</td>
                 <td>
                   <img
@@ -124,7 +124,7 @@ const AllUsers = () => {
                 <td>
                   <button
                     onClick={() => handleDeleteUser(singleUser)}
-                    className="cancel"
+                    className="cancel-btn"
                   >
                     Cancel
                   </button>

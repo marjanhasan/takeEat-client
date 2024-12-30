@@ -27,7 +27,6 @@ const AddItems = () => {
         price: parseFloat(data.price),
       };
       const menuRes = await axiosSecure.post("/menu", menuItem);
-      console.log(menuRes.data);
       if (menuRes.data.insertedId) {
         reset();
         Swal.fire({
