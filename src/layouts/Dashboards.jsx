@@ -15,10 +15,11 @@ import {
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboards = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex">
       <div className="w-fit pr-6 min-h-screen bg-orange-300">
