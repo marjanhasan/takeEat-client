@@ -46,7 +46,7 @@ const Dashboards = () => {
               </li>
               <li className="pb-4">
                 <NavLink
-                  to={"/dashboard/user"}
+                  to={"/dashboard/add-items"}
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
                   }
