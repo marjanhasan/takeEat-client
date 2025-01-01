@@ -4,12 +4,15 @@ import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const totalPrice = cart?.reduce((total, item) => total + item.price, 0);
+
   const handleDelete = (id) => {
     console.log(id);
     Swal.fire({
@@ -39,6 +42,19 @@ const Cart = () => {
       }
     });
   };
+
+  useEffect(() => {
+    if (cart.length == 0) {
+      Swal.fire({
+        title: "Cart Empty!",
+        text: "Order something to see the cart list",
+        icon: "info",
+        // showConfirmButton: false,
+        // timer: 1500,
+      });
+    }
+  }, [cart.length]);
+
   return (
     <div className="mx-3">
       <Helmet>
@@ -46,16 +62,14 @@ const Cart = () => {
       </Helmet>
       <SectionTitle title={"My Cart"} subtitle={"All the lists of my cart"} />
       <div className="overflow-x-auto">
-        <>
-          <div className="flex justify-between items-center py-3 uppercase font-bold text-xl text-slate-900">
-            <div>Hello, {user?.displayName}</div>
-            <div>total items: {cart.length}</div>
-            <div>total price: {totalPrice} $</div>
-            <div>
-              <button className="btn h-6">pay</button>
-            </div>
-          </div>
-        </>
+        <div className="flex justify-between items-center py-3 uppercase font-bold text-xl text-slate-900">
+          <div>Hello, {user?.displayName}</div>
+          <div>total items: {cart.length}</div>
+          <div>total price: {totalPrice} $</div>
+          <button disabled={!cart.length} className="btn h-6">
+            <Link to={"/dashboard/payment"}>pay</Link>
+          </button>
+        </div>
         <table className="table">
           <thead>
             <tr className="text-lg">

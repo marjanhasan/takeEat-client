@@ -109,7 +109,7 @@ const Dashboards = () => {
               </li>
               <li className="pb-4">
                 <NavLink
-                  to={"/dashboard/reservation"}
+                  to={"/dashboard/payment-history"}
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
                   }
