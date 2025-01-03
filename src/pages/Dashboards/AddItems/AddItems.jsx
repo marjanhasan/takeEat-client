@@ -58,7 +58,7 @@ const AddItems = () => {
             />
           </label>
 
-          <div className="flex gap-6">
+          <div className="lg:flex gap-6">
             <label className="form-control w-full mb-3">
               <div className="label">
                 <span className="label-text">Select Category *</span>

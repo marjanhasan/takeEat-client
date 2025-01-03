@@ -25,7 +25,7 @@ const GoogleButton = () => {
               position: "top-end",
               icon: "success",
               title: `${
-                res?.user?.displayName || res?.user?.email
+                res?.user?.displayName?.split(" ")[0] || res?.user?.email
               } successfully logged in`,
               showConfirmButton: false,
               timer: 1500,

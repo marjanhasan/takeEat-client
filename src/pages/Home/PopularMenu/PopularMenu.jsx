@@ -1,6 +1,7 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../../components/MenuItem/MenuItem";
 import useMenu from "../../../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
   const [menu] = useMenu();
@@ -15,7 +16,9 @@ const PopularMenu = () => {
         ))}
       </div>
       <div className="flex justify-center mt-8">
-        <button className="btn mx-auto">Order Now</button>
+        <button className="btn mx-auto">
+          <Link to={"/order/offered"}>Order now</Link>
+        </button>
       </div>
     </section>
   );

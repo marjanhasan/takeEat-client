@@ -32,7 +32,9 @@ const Login = () => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `${user?.displayName || user?.email} successfully logged in`,
+        title: `${
+          user?.displayName?.split(" ")[0] || user?.email
+        } successfully logged in`,
         showConfirmButton: false,
         timer: 1500,
       });

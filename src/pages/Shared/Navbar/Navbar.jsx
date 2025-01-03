@@ -23,10 +23,11 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         {/* logo section  */}
         <Link to="/" className="">
           <span className="ml-2 text-2xl font-bold tracking-wide">
-            restaurant<span className="text-yellow-700">App</span>
+            take<span className="text-yellow-700">Eat</span>
           </span>
         </Link>
         <div className="flex">
+          {/* TODO: add dart mode [pc]
           {darkMode ? (
             <button
               onClick={toggleDarkMode}
@@ -41,7 +42,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
             >
               <FaToggleOff className="text-2xl" />
             </button>
-          )}
+          )} */}
           {/* nav section  */}
           <ul className="items-center hidden space-x-8 mx-4 lg:flex font-medium">
             <li>
@@ -68,52 +69,50 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                 Order
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="contact"
-                className={({ isActive }) => (isActive ? "active" : "default")}
-              >
-                Contact
-              </NavLink>
-            </li>
-            {user && isAdmin && (
-              <li>
-                <Link to={"dashboard/admin"} className="default">
-                  Dashboard
-                </Link>
-              </li>
-            )}
-            {user && !isAdmin && (
-              <li>
-                <Link to={"dashboard/user"} className="default">
-                  Dashboard
-                </Link>
-              </li>
-            )}
           </ul>
           {/* button section  */}
 
           {user ? (
             <div className="hidden lg:flex items-center gap-4 ">
-              <Link to="/profile">
-                <img
-                  className="h-14 w-14 rounded-full"
-                  src={`${user?.photoURL}`}
-                  alt=""
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content={`Hey, ${user?.displayName}!`}
-                />
-              </Link>
-              <Tooltip id="my-tooltip" className="z-50" />
               <Link to={"/dashboard/cart"}>
                 <div className="btn text-lg">
                   <FaShoppingCart />
                   {cart.length}
                 </div>
               </Link>
-              <button onClick={() => logOut()} className="btn">
-                Logout
-              </button>
+              <div className="dropdown dropdown-end z-50">
+                <div tabIndex={0} role="button">
+                  <img
+                    className="h-14 w-14 rounded-full"
+                    src={`${user?.photoURL}`}
+                    alt=""
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content={`Hey, ${
+                      user?.displayName?.split(" ")[0]
+                    }!`}
+                  />
+
+                  <Tooltip id="my-tooltip" className="z-50" />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                >
+                  <li>
+                    <Link
+                      to={isAdmin ? "dashboard/admin" : "dashboard/user"}
+                      className="default"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={() => logOut()} className="default">
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
             <Link to="/login" className="hidden lg:flex">
@@ -124,12 +123,8 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         {/* mobile navbar section  */}
         <div className="lg:hidden">
           {/* dropdown open button  */}
-          <button
-            aria-label="Open Menu"
-            title="Open Menu"
-            onClick={() => setIsMenuOpen(true)}
-          >
-            <FaBars className=" text-gray-600" />
+          <button onClick={() => setIsMenuOpen(true)}>
+            <FaBars className="text-slate-900 text-3xl" />
           </button>
           {isMenuOpen && (
             <div className="absolute top-0 left-0 w-full z-50">
@@ -142,20 +137,18 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     {user ? (
-                      <Link to="/profile">
-                        <img
-                          className="h-14 w-14 rounded-full"
-                          src={`${user?.photoURL}`}
-                          alt=""
-                          data-tooltip-id="my-tooltip"
-                          data-tooltip-content={user?.displayName}
-                        />
-                      </Link>
+                      <img
+                        className="h-14 w-14 rounded-full"
+                        src={`${user?.photoURL}`}
+                        alt=""
+                        data-tooltip-id="my-tooltip"
+                        data-tooltip-content={user?.displayName?.split(" ")[0]}
+                      />
                     ) : (
                       <Link to="/" className="inline-flex items-center">
                         <span className="ml-2 text-2xl font-bold tracking-wide">
-                          restaurant
-                          <span className="text-yellow-700">App</span>
+                          take
+                          <span className="text-yellow-700">Eat</span>
                         </span>
                       </Link>
                     )}
@@ -170,6 +163,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                   </div>
                   {/* dropdown menu close button  */}
                   <div className="flex gap-x-2 items-center">
+                    {/*  TODO: add dart mode [mobile]
                     {darkMode ? (
                       <button onClick={toggleDarkMode} className="">
                         <FaToggleOn className="text-2xl" />
@@ -178,13 +172,9 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                       <button onClick={toggleDarkMode} className="">
                         <FaToggleOff className="text-2xl" />
                       </button>
-                    )}
-                    <button
-                      aria-label="Close Menu"
-                      title="Close Menu"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <FaTimesCircle className=" text-gray-600" />
+                    )} */}
+                    <button onClick={() => setIsMenuOpen(false)}>
+                      <FaTimesCircle className="text-red-600 text-3xl" />
                     </button>
                   </div>
                 </div>
@@ -219,16 +209,6 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                         }
                       >
                         Order
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/about"
-                        className={({ isActive }) =>
-                          isActive ? "active" : "default"
-                        }
-                      >
-                        About
                       </NavLink>
                     </li>
                     {user && isAdmin && (

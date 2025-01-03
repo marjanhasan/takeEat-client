@@ -37,7 +37,9 @@ const AllUsers = () => {
               refetch();
               Swal.fire({
                 title: "Deleted!",
-                text: `${singleUser.displayName} has been deleted by admin`,
+                text: `${
+                  singleUser.displayName?.split(" ")[0]
+                } has been deleted by admin`,
                 icon: "success",
               });
             }
@@ -65,7 +67,7 @@ const AllUsers = () => {
               refetch();
               Swal.fire({
                 title: "Done!",
-                text: `${singleUser?.displayName} is admin now.`,
+                text: `${singleUser?.displayName?.split(" ")[0]} is admin now.`,
                 icon: "success",
               });
             }
@@ -81,8 +83,8 @@ const AllUsers = () => {
       </Helmet>
       <SectionTitle title={"My Cart"} subtitle={"All the lists of users"} />
       <div className="overflow-x-auto">
-        <div className="flex justify-evenly py-3 uppercase font-bold text-xl text-slate-900">
-          <div>Hello, {user?.displayName}</div>
+        <div className="text-center lg:flex justify-evenly py-3 uppercase font-bold text-xl text-slate-900">
+          <div>Hello, {user?.displayName?.split(" ")[0]}</div>
           <div>total users: {users?.length}</div>
         </div>
         <table className="table">

@@ -63,7 +63,7 @@ const Cart = () => {
       <SectionTitle title={"My Cart"} subtitle={"All the lists of my cart"} />
       <div className="overflow-x-auto">
         <div className="flex justify-between items-center py-3 uppercase font-bold text-xl text-slate-900">
-          <div>Hello, {user?.displayName}</div>
+          <div>Hello, {user?.displayName?.split(" ")[0]}</div>
           <div>total items: {cart.length}</div>
           <div>total price: {totalPrice} $</div>
           <button disabled={!cart.length} className="btn h-6">

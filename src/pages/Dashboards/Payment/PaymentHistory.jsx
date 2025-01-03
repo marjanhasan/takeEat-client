@@ -22,7 +22,7 @@ const PaymentHistory = () => {
       />
       <div className="overflow-x-auto">
         <div className="flex justify-evenly py-3 uppercase font-bold text-xl text-slate-900">
-          <div>Hello, {user?.displayName}</div>
+          <div>Hello, {user?.displayName?.split(" ")[0]}</div>
           <div>total transaction: {payments?.length}</div>
         </div>
         <table className="table">

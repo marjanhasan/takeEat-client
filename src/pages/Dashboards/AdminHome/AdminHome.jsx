@@ -17,7 +17,9 @@ import {
   PieChart,
   Pie,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
@@ -89,16 +91,17 @@ const AdminHome = () => {
     return { name: data?.category, value: data?.revenue };
   });
   return (
-    <div>
-      <h1 className="text-4xl font-semibold uppercase">
-        Welcome back! {user?.displayName ? user?.displayName : "admin"}
-      </h1>
-      <div className="stats stats-vertical lg:stats-horizontal shadow">
+    <div className="w-full">
+      <SectionTitle
+        title={"Admin home"}
+        subtitle={`Welcome ${user.displayName?.split(" ")[0]}`}
+      />
+      <div className="stats stats-vertical lg:stats-horizontal shadow w-full">
         <div className="stat">
           <div className="stat-figure text-5xl">
             <FaDollarSign />
           </div>
-          <div className="stat-value">{stats?.revenue}</div>
+          <div className="stat-value">{stats?.revenue?.toFixed(2)}</div>
           <div className="stat-title uppercase">Revenue</div>
         </div>
         <div className="stat">
@@ -123,58 +126,62 @@ const AdminHome = () => {
           <div className="stat-title uppercase">orders</div>
         </div>
       </div>
-      <div className="flex mt-6">
-        <div className="w-1/2">
-          <BarChart
-            width={500}
-            height={300}
-            data={chartData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="category" />
-            <YAxis />
-            <Bar
-              dataKey="quantity"
-              fill="#8884d8"
-              shape={<TriangleBar />}
-              label={{ position: "top" }}
+      <div className="lg:flex mt-6">
+        <div className="lg:w-1/2" style={{ width: "100%", height: 300 }}>
+          <ResponsiveContainer>
+            <BarChart
+              width={100}
+              height={100}
+              data={chartData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
             >
-              {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={colors[index % colors.length]}
-                />
-              ))}
-            </Bar>
-          </BarChart>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" />
+              <YAxis />
+              <Bar
+                dataKey="quantity"
+                fill="#8884d8"
+                shape={<TriangleBar />}
+                label={{ position: "top" }}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={colors[index % colors.length]}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         </div>
-        <div className="w-1/2">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={pieChartData}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {pieChartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Legend />
-          </PieChart>
+        <div className="lg:w-1/2" style={{ width: "100%", height: 300 }}>
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                data={pieChartData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieChartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>

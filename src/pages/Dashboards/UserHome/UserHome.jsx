@@ -5,7 +5,8 @@ const UserHome = () => {
   return (
     <div>
       <h1 className="text-4xl font-semibold uppercase">
-        Welcome back! {user?.displayName ? user?.displayName : "user"}
+        Welcome back!{" "}
+        {user?.displayName ? user?.displayName?.split(" ")[0] : "user"}
       </h1>
     </div>
   );

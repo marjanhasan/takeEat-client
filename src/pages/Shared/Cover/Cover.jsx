@@ -9,7 +9,7 @@ const Cover = ({ img, title, description, margin = "" }) => {
       ></div>
       <div className="uppercase w-[75%] h-[40%] flex flex-col justify-center mx-auto my-auto bg-[#151515] text-center opacity-70">
         <h2 className="text-4xl z-10 text-white">{title}</h2>
-        <p className="text-sm mt-2 px-10">{description}</p>
+        <p className="text-sm mt-2 px-10 text-white">{description}</p>
       </div>
     </section>
   );
