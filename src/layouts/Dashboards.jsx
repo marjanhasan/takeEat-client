@@ -34,7 +34,7 @@ const Dashboards = () => {
             <>
               <li className="pb-4">
                 <NavLink
-                  to={"/dashboard/user"}
+                  to={"/dashboard/admin"}
                   className={({ isActive }) =>
                     isActive ? "active" : "default"
                   }

@@ -10,15 +10,13 @@ import { Link, NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { AuthContext } from "../../../providers/AuthProviders";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
-// TODO: props
 const Navbar = ({ toggleDarkMode, darkMode }) => {
-  // TODO:
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // TODO: , profile
   const { logOut, user } = useContext(AuthContext);
-  console.log(user?.displayName);
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
   return (
     <>
       <div className="flex items-center justify-between relative px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -78,6 +76,20 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                 Contact
               </NavLink>
             </li>
+            {user && isAdmin && (
+              <li>
+                <Link to={"dashboard/admin"} className="default">
+                  Dashboard
+                </Link>
+              </li>
+            )}
+            {user && !isAdmin && (
+              <li>
+                <Link to={"dashboard/user"} className="default">
+                  Dashboard
+                </Link>
+              </li>
+            )}
           </ul>
           {/* button section  */}
 
@@ -128,7 +140,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
               >
                 {/* logo & button section  */}
                 <div className="flex items-center justify-between mb-4">
-                  <div>
+                  <div className="flex items-center gap-3">
                     {user ? (
                       <Link to="/profile">
                         <img
@@ -145,6 +157,14 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                           restaurant
                           <span className="text-yellow-700">App</span>
                         </span>
+                      </Link>
+                    )}
+                    {user && (
+                      <Link to={"/dashboard/cart"}>
+                        <div className="flex items-center gap-1 bg-slate-900 rounded-full p-2 text-yellow-700 text-lg">
+                          <FaShoppingCart />
+                          {cart.length}
+                        </div>
                       </Link>
                     )}
                   </div>
@@ -211,13 +231,22 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                         About
                       </NavLink>
                     </li>
-                    <li>
-                      {user ? (
-                        <span onClick={logOut}>Logout</span>
-                      ) : (
-                        <Link to="/login">Login</Link>
-                      )}
-                    </li>
+                    {user && isAdmin && (
+                      <li>
+                        <Link to={"dashboard/admin"} className="default">
+                          Dashboard
+                        </Link>
+                      </li>
+                    )}
+                    {user && !isAdmin && (
+                      <li>
+                        <Link to={"dashboard/user"} className="default">
+                          Dashboard
+                        </Link>
+                      </li>
+                    )}
+                    {user && <li onClick={logOut}>Logout</li>}
+                    {!user && <Link to="/login">Login</Link>}
                   </ul>
                 </nav>
               </div>

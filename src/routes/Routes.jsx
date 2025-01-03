@@ -16,6 +16,8 @@ import ManageItems from "../pages/Dashboards/ManageItems/ManageItems";
 import UpdateItem from "../pages/Dashboards/UpdateItem/UpdateItem";
 import Payment from "../pages/Dashboards/Payment/Payment";
 import PaymentHistory from "../pages/Dashboards/Payment/PaymentHistory";
+import AdminHome from "../pages/Dashboards/AdminHome/AdminHome";
+import UserHome from "../pages/Dashboards/UserHome/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +62,11 @@ export const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      // user routes
+      {
+        path: "user",
+        element: <UserHome />,
+      },
       {
         path: "cart",
         element: <Cart />,
@@ -73,6 +80,14 @@ export const router = createBrowserRouter([
         element: <PaymentHistory />,
       },
       // Admin routes
+      {
+        path: "admin",
+        element: (
+          <AdminRoutes>
+            <AdminHome />
+          </AdminRoutes>
+        ),
+      },
       {
         path: "add-items",
         element: (
@@ -105,7 +120,9 @@ export const router = createBrowserRouter([
           </AdminRoutes>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/menu/${params.id}`);
+          return fetch(
+            `https://restaurant-app-server.vercel.app/menu/${params.id}`
+          );
         },
       },
     ],
