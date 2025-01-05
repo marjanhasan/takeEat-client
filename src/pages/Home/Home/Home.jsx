@@ -4,20 +4,21 @@ import Category from "../Category/Category";
 import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
 import Testimonials from "../Testimonials/Testimonials";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const Home = () => {
-  useEffect(() => {
+  const { user, loading } = useAuth();
+  if (!loading && !user) {
     Swal.fire({
       position: "center",
       icon: "info",
-      title: `This site is still under construction.`,
-      text: "Sorry for the minor errors and responsive issues. I will fix it soon!",
+      title: `<strong>Please <u>LOGIN</u> to experience more features</strong>`,
+      text: "You can add/cancel order. Pay with card and see the payment history and many more!",
       showConfirmButton: false,
       timer: 3000,
     });
-  }, []);
+  }
   return (
     <div className="max-w-screen-xl mx-auto">
       <Helmet>

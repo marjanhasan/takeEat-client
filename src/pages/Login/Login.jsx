@@ -52,13 +52,29 @@ const Login = () => {
         <title>Restaurant App - Login</title>
       </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold uppercase">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+        <div className="text-center  w-full">
+          <h1 className="text-5xl font-bold">Login now!</h1>
+          <ul className="py-6 text-lg font-semibold list-disc list-inside uppercase">
+            <li>
+              You can sign up via <b>Google</b> button
+            </li>
+            <li>
+              You can sign up via <b>any email [not necessarily verified]</b>
+            </li>
+            <li>
+              You can login via <b>admin email to explore admin features</b>
+            </li>
+            <li>
+              <b>admin email :</b> admin@gmail.com
+            </li>
+            <li>
+              <b>admin password :</b> asdfghj1
+            </li>
+            <li className="text-blue-500">
+              After typing all the captcha characters click outside of the input
+              button
+            </li>
+          </ul>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form onSubmit={handleLogin} className="card-body">
@@ -85,14 +101,14 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
-              <label className="label">
+              {/* <label className="label">
                 <a
                   href="#"
                   className="label-text-alt link link-hover uppercase"
                 >
                   Forgot password?
                 </a>
-              </label>
+              </label> */}
             </div>
             <div className="form-control">
               <label className="label">

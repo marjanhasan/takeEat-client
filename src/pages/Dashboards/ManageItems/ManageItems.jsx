@@ -53,7 +53,7 @@ const ManageItems = () => {
               <th>Image</th>
               <th>Name</th>
               <th>email</th>
-              <th>role</th>
+              <th>edit</th>
               <th className="rounded-tr-2xl">Action</th>
             </tr>
           </thead>

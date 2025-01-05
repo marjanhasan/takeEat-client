@@ -106,7 +106,7 @@ const CheckOutForm = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="w-1/2 border p-6 bg-slate-100 mx-auto rounded-lg"
+        className="sm:w-1/2 border p-6 bg-slate-100 mx-2 sm:mx-auto rounded-lg"
       >
         <CardElement
           options={{

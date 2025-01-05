@@ -3,7 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { FaUserTie } from "react-icons/fa";
+import { FaUser, FaUserTie } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const AllUsers = () => {
@@ -103,11 +103,17 @@ const AllUsers = () => {
               <tr key={singleUser._id} className="text-lg">
                 <td>{idx + 1}</td>
                 <td>
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src={singleUser?.image}
-                    alt=""
-                  />
+                  {singleUser?.photoURL ? (
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src={singleUser?.photoURL}
+                      alt=""
+                    />
+                  ) : (
+                    <div className="bg-slate-200 rounded-full h-12 w-12 flex items-center justify-center">
+                      <FaUser className="text-3xl" />
+                    </div>
+                  )}
                 </td>
                 <td>{singleUser?.name}</td>
                 <td>{singleUser?.email}</td>

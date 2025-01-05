@@ -14,6 +14,25 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
+  // Parse the ISO date string
+  const isoDateString = "2025-01-03T13:55:53.796Z";
+
+  // Create a Date object
+  const dateObject = new Date(isoDateString);
+
+  // Format the date to a human-readable string
+  const humanReadableDate = dateObject.toLocaleString("en-US", {
+    year: "numeric",
+    month: "long", // Full month name (January, February, etc.)
+    day: "numeric", // Day of the month
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    timeZoneName: "short", // Adds the time zone abbreviation
+  });
+
+  console.log(humanReadableDate); // Example output: "January 3, 2025, 1:55:53 PM GMT"
+
   return (
     <div>
       <SectionTitle
@@ -32,19 +51,29 @@ const PaymentHistory = () => {
               <th>email</th>
               <th>price</th>
               <th>date</th>
-              <th>status</th>
             </tr>
           </thead>
           <tbody>
-            {payments?.map((singlePayment, idx) => (
-              <tr key={singlePayment._id} className="text-lg">
-                <td>{idx + 1}</td>
-                <td>{singlePayment?.email}</td>
-                <td>{singlePayment?.price}</td>
-                <td>{singlePayment?.date}</td>
-                <td>{singlePayment?.status}</td>
-              </tr>
-            ))}
+            {payments?.map((singlePayment, idx) => {
+              const dateObject = new Date(singlePayment?.date);
+              const formattedDate = dateObject.toLocaleString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+                timeZoneName: "short",
+              });
+              return (
+                <tr key={singlePayment._id} className="text-lg">
+                  <td>{idx + 1}</td>
+                  <td>{singlePayment?.email}</td>
+                  <td>{singlePayment?.price}</td>
+                  <td>{formattedDate}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
