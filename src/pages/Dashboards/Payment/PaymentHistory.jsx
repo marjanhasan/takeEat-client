@@ -14,24 +14,6 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
-  // Parse the ISO date string
-  const isoDateString = "2025-01-03T13:55:53.796Z";
-
-  // Create a Date object
-  const dateObject = new Date(isoDateString);
-
-  // Format the date to a human-readable string
-  const humanReadableDate = dateObject.toLocaleString("en-US", {
-    year: "numeric",
-    month: "long", // Full month name (January, February, etc.)
-    day: "numeric", // Day of the month
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    timeZoneName: "short", // Adds the time zone abbreviation
-  });
-
-  console.log(humanReadableDate); // Example output: "January 3, 2025, 1:55:53 PM GMT"
 
   return (
     <div>

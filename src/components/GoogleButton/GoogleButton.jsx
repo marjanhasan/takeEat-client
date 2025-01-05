@@ -17,6 +17,7 @@ const GoogleButton = () => {
         const userInfo = {
           email: res?.user?.email,
           name: res?.user?.displayName,
+          photoURL: res?.user?.photoURL,
         };
         axiosPublic
           .post("/users", userInfo)
@@ -32,9 +33,27 @@ const GoogleButton = () => {
             });
             navigate(from, { replace: true });
           })
-          .catch((err) => console.log(`post user failed - googleSignIn`, err));
+          .catch((err) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "something went wrong",
+              text: "Please try again with proper credentials",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
       })
-      .catch((err) => console.log("google sign in error", err));
+      .catch((err) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "something went wrong",
+          text: "Please try again with proper credentials",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
   return (
     <div className="max-w-fit mx-auto mb-5">

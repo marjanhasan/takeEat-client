@@ -34,7 +34,16 @@ const ManageItems = () => {
               });
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "something went wrong",
+              text: "Please try again!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
       }
     });
   };

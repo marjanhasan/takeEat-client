@@ -42,16 +42,43 @@ const SignUp = () => {
                   navigate("/");
                 }
               })
-              .catch((err) => console.log(err));
+              .catch((err) => {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "something went wrong",
+                  text: "Please try again with proper credentials",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "something went wrong",
+              text: "Please try again with proper credentials",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "something went wrong",
+          text: "Please try again with proper credentials",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
   return (
     <div className="hero bg-base-200 min-h-screen min-w-full">
       <Helmet>
-        <title>Restaurant App - Sign Up</title>
+        <title>takeEat - Sign Up</title>
       </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center  w-full">
@@ -67,10 +94,12 @@ const SignUp = () => {
               You can login via <b>admin email to explore admin features</b>
             </li>
             <li>
-              <b>admin email :</b> admin@gmail.com
+              <b>admin email :</b>{" "}
+              <span className="lowercase">admin@gmail.com</span>
             </li>
             <li>
-              <b>admin password :</b> asdfghj1
+              <b>admin password :</b>{" "}
+              <span className="lowercase">asdfghj1</span>
             </li>
           </ul>
         </div>

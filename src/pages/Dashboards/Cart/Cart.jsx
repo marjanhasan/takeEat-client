@@ -14,7 +14,6 @@ const Cart = () => {
   const totalPrice = cart?.reduce((total, item) => total + item.price, 0);
 
   const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,7 +27,6 @@ const Cart = () => {
         axiosSecure
           .delete(`/carts/${id}`)
           .then((res) => {
-            console.log(res);
             if (res.data.deletedCount > 0) {
               refetch();
               Swal.fire({
@@ -38,7 +36,16 @@ const Cart = () => {
               });
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "something went wrong",
+              text: "Please try again!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
       }
     });
   };
@@ -57,9 +64,6 @@ const Cart = () => {
 
   return (
     <div className="mx-3">
-      <Helmet>
-        <title>Restaurant App - Dashboard - Cart</title>
-      </Helmet>
       <SectionTitle title={"My Cart"} subtitle={"All the lists of my cart"} />
       <div className="overflow-x-auto">
         <div className="flex justify-between items-center py-3 uppercase font-bold text-xl text-slate-900">

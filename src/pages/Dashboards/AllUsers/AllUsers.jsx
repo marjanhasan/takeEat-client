@@ -27,26 +27,45 @@ const AllUsers = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/users/${singleUser._id}`)
-          .then((res) => {
-            console.log(res);
-            if (res.data.deletedCount > 0) {
-              refetch();
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure
+            .delete(`/users/${singleUser._id}`)
+            .then((res) => {
+              if (res.data.deletedCount > 0) {
+                refetch();
+                Swal.fire({
+                  title: "Deleted!",
+                  text: `${
+                    singleUser.displayName?.split(" ")[0]
+                  } has been deleted by admin`,
+                  icon: "success",
+                });
+              }
+            })
+            .catch((err) => {
               Swal.fire({
-                title: "Deleted!",
-                text: `${
-                  singleUser.displayName?.split(" ")[0]
-                } has been deleted by admin`,
+                position: "top-end",
                 icon: "success",
+                title: "something went wrong",
+                text: "Please try again!",
+                showConfirmButton: false,
+                timer: 1500,
               });
-            }
-          })
-          .catch((err) => console.log(err));
-      }
-    });
+            });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "something went wrong",
+          text: "Please try again!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
 
   const handleAdmin = (singleUser) => {
@@ -58,29 +77,48 @@ const AllUsers = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, make admin!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure
-          .patch(`/users/${singleUser._id}`)
-          .then((res) => {
-            if (res.data.modifiedCount > 0) {
-              refetch();
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure
+            .patch(`/users/${singleUser._id}`)
+            .then((res) => {
+              if (res.data.modifiedCount > 0) {
+                refetch();
+                Swal.fire({
+                  title: "Done!",
+                  text: `${
+                    singleUser?.displayName?.split(" ")[0]
+                  } is admin now.`,
+                  icon: "success",
+                });
+              }
+            })
+            .catch((err) => {
               Swal.fire({
-                title: "Done!",
-                text: `${singleUser?.displayName?.split(" ")[0]} is admin now.`,
+                position: "top-end",
                 icon: "success",
+                title: "something went wrong",
+                text: "Please try again!",
+                showConfirmButton: false,
+                timer: 1500,
               });
-            }
-          })
-          .catch((err) => console.log(err));
-      }
-    });
+            });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "something went wrong",
+          text: "Please try again!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
   return (
     <div className="mx-3">
-      <Helmet>
-        <title>Restaurant App - Admin Dashboard - All Users</title>
-      </Helmet>
       <SectionTitle title={"My Cart"} subtitle={"All the lists of users"} />
       <div className="overflow-x-auto">
         <div className="text-center lg:flex justify-evenly py-3 uppercase font-bold text-xl text-slate-900">

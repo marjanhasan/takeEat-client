@@ -16,6 +16,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Dashboards = () => {
   const [cart] = useCart();
@@ -23,6 +24,9 @@ const Dashboards = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="relative">
+      <Helmet>
+        <title>takeEat - Dashboard</title>
+      </Helmet>
       <div className="hidden lg:flex">
         <div className="w-fit pr-6 min-h-screen bg-orange-300">
           <Link to="/">

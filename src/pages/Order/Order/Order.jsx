@@ -30,7 +30,7 @@ const Order = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Helmet>
-        <title>Restaurant App - Order</title>
+        <title>takeEat - Order</title>
       </Helmet>
       <Cover
         img={orderCoverImg}

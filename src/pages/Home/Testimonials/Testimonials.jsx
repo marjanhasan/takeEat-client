@@ -6,6 +6,7 @@ import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import { FaQuoteLeft } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
@@ -14,7 +15,16 @@ const Testimonials = () => {
     fetch("https://restaurant-app-server.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data))
-      .catch((error) => console.log("Testimonials error :: ", error));
+      .catch((error) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "something went wrong",
+          text: "Please try again!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   }, []);
   return (
     <div className="">

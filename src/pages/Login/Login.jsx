@@ -24,32 +24,49 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    signIn(email, password).then((res) => {
-      const user = res.user;
-      console.log(user);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `${
-          user?.displayName?.split(" ")[0] || user?.email
-        } successfully logged in`,
-        showConfirmButton: false,
-        timer: 1500,
+    let email = form.email.value;
+    let password = form.password.value;
+    signIn(email, password)
+      .then((res) => {
+        const user = res.user;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${
+            user?.displayName?.split(" ")[0] || user?.email
+          } successfully logged in`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "something went wrong",
+          text: "Please try again with proper credentials",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        form.email.value = "";
+        form.password.value = "";
       });
-      navigate(from, { replace: true });
-    });
   };
 
   const handleCaptcha = (e) => {
     let captcha = e.target.value;
-    validateCaptcha(captcha) ? setDisabled(false) : setDisabled(true);
+    if (validateCaptcha(captcha)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+      e.target.value = "";
+    }
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
       <Helmet>
-        <title>Restaurant App - Login</title>
+        <title>takeEat - Login</title>
       </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center  w-full">
@@ -65,10 +82,12 @@ const Login = () => {
               You can login via <b>admin email to explore admin features</b>
             </li>
             <li>
-              <b>admin email :</b> admin@gmail.com
+              <b>admin email :</b>{" "}
+              <span className="lowercase">admin@gmail.com</span>
             </li>
             <li>
-              <b>admin password :</b> asdfghj1
+              <b>admin password :</b>{" "}
+              <span className="lowercase">asdfghj1</span>
             </li>
             <li className="text-blue-500">
               After typing all the captcha characters click outside of the input

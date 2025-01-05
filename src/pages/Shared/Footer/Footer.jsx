@@ -10,13 +10,13 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <Link to="/" className="">
               <span className="text-2xl font-bold tracking-wide">
-                restaurant<span className="text-yellow-700">App</span>
+                take<span className="text-yellow-700">Eat</span>
               </span>
             </Link>
             <p className="text-base text-gray-500 md:text-lg mt-3 break-all">
-              Welcome to restaurantApp, your ultimate destination for exploring
-              the world{`'`}s best cuisine and discovering renowned celebrity
-              chefs and their signature recipes.
+              Welcome to takeEat, your ultimate destination for exploring the
+              world{`'`}s best cuisine and discovering renowned celebrity chefs
+              and their signature recipes.
             </p>
             <div className="flex justify-center md:justify-start gap-2 mt-4">
               <span className="p-4 bg-yellow-700 text-white rounded-full text-center text-xl">
@@ -76,9 +76,9 @@ const Footer = () => {
         <hr className="bg-gray-50 mt-12" />
         <div className="flex flex-col md:flex-row md:justify-between text-center mt-6 text-base text-gray-500 md:text-lg ">
           <span>
-            &copy; {new Date().getFullYear()} restaurantApp. All Rights Reserved
+            &copy; {new Date().getFullYear()} takeEat. All Rights Reserved
           </span>
-          <span>Powered by restaurantApp</span>
+          <span>Powered by takeEat</span>
         </div>
       </div>
     </div>

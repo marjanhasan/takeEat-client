@@ -19,7 +19,7 @@ const Menu = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Helmet>
-        <title>Restaurant App - Menu</title>
+        <title>takeEat - Menu</title>
       </Helmet>
       <Cover
         img={banner}
