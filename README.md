@@ -2,13 +2,16 @@
 
 A full-stack restaurant web application providing a seamless experience for both customers and administrators.
 
+## WakaTime Reports
+
+[![wakatime](https://wakatime.com/badge/user/5225e8ed-9a14-4fe9-b3f5-b0a5b485c255/project/1cf32d34-2144-4bf4-88b9-f1ab2908621c.svg)](https://wakatime.com/badge/user/5225e8ed-9a14-4fe9-b3f5-b0a5b485c255/project/1cf32d34-2144-4bf4-88b9-f1ab2908621c)
+
 ## Table of Contents
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ### Features
 - **Fully Responsive Design**: Optimized for mobile and desktop navigation.
@@ -60,12 +63,3 @@ A full-stack restaurant web application providing a seamless experience for both
 
 ### Contributing
 Contributions are welcome! Fork the repository and submit a pull request.
-
-### License
-This project is licensed under the MIT License.
-
----
-
-[![wakatime](https://wakatime.com/badge/user/5225e8ed-9a14-4fe9-b3f5-b0a5b485c255/project/1cf32d34-2144-4bf4-88b9-f1ab2908621c.svg)](https://wakatime.com/badge/user/5225e8ed-9a14-4fe9-b3f5-b0a5b485c255/project/1cf32d34-2144-4bf4-88b9-f1ab2908621c)
-
-[![wakatime](https://wakatime.com/badge/user/5225e8ed-9a14-4fe9-b3f5-b0a5b485c255/project/1cf32d34-2144-4bf4-88b9-f1ab2908621c.svg)](https://wakatime.com/badge/user/5225e8ed-9a14-4fe9-b3f5-b0a5b485c255/project/1cf32d34-2144-4bf4-88b9-f1ab2908621c)
