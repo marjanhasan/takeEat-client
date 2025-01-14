@@ -50,6 +50,14 @@ A full-stack restaurant web application providing a seamless experience for both
    ```env
    REACT_APP_FIREBASE_API_KEY=your_api_key
    REACT_APP_STRIPE_KEY=your_stripe_key
+   VITE_apiKey=your_firebase_apiKey
+   VITE_authDomain=your_firebase_authDomain
+   VITE_projectId=your_firebase_projectId
+   VITE_storageBucket=your_firebase_storageBucket
+   VITE_messagingSenderId=your_firebase_messagingSenderId
+   VITE_appId=your_firebase_appId
+   VITE_IMAGE_HOSTING_KEY=your_imagebb_IMAGE_HOSTING_KEY
+   VITE_PAYMENT_GATEWAY_PK=your_stripe_pk
    ```
 5. Start the development server.
    ```bash
