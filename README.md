@@ -1,6 +1,6 @@
 # takeEat (Client Side)
 
-A full-stack restaurant web application providing a seamless experience for both customers and administrators.
+A full-stack restaurant web application providing a seamless experience for both customers and administrators. The client-side of the **takeEat** project is a dynamic and responsive web application built using **React.js**. This platform provides an intuitive interface for customers and administrators, ensuring smooth navigation, menu browsing, and dashboard access.
 
 ## WakaTime Reports
 
